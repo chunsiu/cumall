@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/c3cb9c913e.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUMall | Cart</title>
+</head>
+<body>
+    <section id="header">
+        <a><img src="img/icon.PNG" class="icon" alt=""></a>
+        <!--top lefthand side icon-->  
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a class="active" href="profile.html">Profile</a></li>
+                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><a href="login.html"><i class="fa-solid fa-user"></i></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <div id="account-content">
+        <div id="account-container">
+            <div id="account-profile">
+                <h1>Account Information</h1>
+                <div id="profileform">
+                    <div class="account-profile-row">
+                        <label class="input-title">Login Email:</label>
+                        <div class="email">eric123456789@gmail.com</div>
+                    </div>
+                    <div class="account-profile-row">
+                        <label class="input-title">Contact Email:</label>
+                        <div class="control-group">
+                            <div class="input-combo">
+                                <div class="controls">
+                                    <input id="modifiedEmail" name="modifyiedEmail" type="text" value="eric123456789@gmail.com">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-profile-row">
+                        <label class="input-title">Name</label>
+                            <div class="control-group">
+                                <div class="input-combo">
+                                    <div class="controls">
+                                        <input id="name" name="name" placeholder="Name" type="text" value="Wong Man Chung">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div>
+                        <button type="submit" class="btn">save</button>
+                    </div>
+                </div>
+            </div>
+            <div id="account-password">
+                <h1>Change Password</h1>
+                <div>
+                    <form id="UpdatedPasswordForm">
+                        <div class="currentAccountPassword">
+                            <label class="input-title">Present Password:</label>
+                            <div class="control-group">
+                                <div class="input-combo">
+                                    <div class="controls">
+                                        <input id="currentPassword" name="currentPassword" class="old-password" type="password" value>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="newAccountPassword">
+                            <label class="input-title">New Password:</label>
+                            <div class="control-group">
+                                <div class="input-combo">
+                                    <div class="controls">
+                                        <input id="newAccountPassword" name="newAccountPassword" type="password" value>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkNewPassword">
+                            <label class="input-title">Ensure New Password:</label>
+                            <div class="control-group">
+                                <div class="input-combo">
+                                    <div class="controls">
+                                        <input id="checkNewPassword" name="checkNewPassword" type="password" value>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="account-password-change-submit btn">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
