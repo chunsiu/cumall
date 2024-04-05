@@ -1,0 +1,14 @@
+<%- include('header.ejs') %>
+    <h1>THIS IS INDEX</h1>
+
+    <%=time%>
+    <% if(pages.length) { %>
+        <p>3</p>
+        <% pages.forEach(page => { %>
+            <h3> title: <%=page.title%> </h3>
+            author: <%=page.author%><br>
+        <% }) %>
+    <% } %>
+
+    
+<%- include('footer.ejs') %>
