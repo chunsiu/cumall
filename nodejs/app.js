@@ -38,6 +38,10 @@ db.connect((err)=>{
 
 
 
+
+
+
+
 //
 
 
@@ -77,7 +81,7 @@ app.get('/get_user/:keyword/' ,(req,res)=>{
 
 app.get('/get_all_products/' ,(req,res)=>{
   
-  sql = 'select * from product  ' ; 
+  sql = 'select p.productid,productname,price,quantity,description,rating,path from product p, photo ph where p.productid = ph.productid  ' ; 
    
   db.query(sql,(err,result)=>{
 
@@ -104,6 +108,9 @@ app.get('/get_product/:keyword/' ,(req,res)=>{
   })
  
 })
+ 
+
+
 //
 
 //Order function
