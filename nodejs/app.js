@@ -35,6 +35,44 @@ db.connect((err)=>{
 
 //user function
 
+app.get('/update_profile/:id/:name/:gender/:age/' ,(req,res)=>{
+  var id = req.params.id;
+  var name = req.params.name;
+  var gender = req.params.gender;
+  var age= req.params.age;
+  console.log("hihi");
+  sql = 'update users set username = ?  , age = ?  , gender = ? where userid = ? ' ; 
+  var params = [name,age,gender,id]; 
+  db.query(sql,params,(err,result)=>{
+
+      if(err) throw err;
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+ 
+})
+
+app.post('/change_pw/' ,(req,res)=>{
+  var old_pw = req.body.old_pw;
+  var new_pw = req.body.new_pw;
+  var uid = req.body.uid;
+ 
+  sql = 'update users set password = ? where userid = ? and password = ? ' ; 
+  var params = [new_pw,uid,old_pw]; 
+  db.query(sql,params,(err,result)=>{
+
+      if(err) throw err;
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+  
+ 
+})
+
 
 
 
@@ -66,6 +104,21 @@ app.get('/get_user/:keyword/' ,(req,res)=>{
   var keyword = "%"+req.params.keyword+"%";
   sql = 'select * from users where  username like ? or userid like ?  ' ; 
   params = [keyword,keyword];
+  db.query(sql,params ,(err,result)=>{
+
+      if(err) throw err;
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+ 
+})
+
+app.get('/get_user2/:id/' ,(req,res)=>{
+  var uid = req.params.id;
+  sql = 'select * from users where  userid =?  ' ; 
+  params = [uid];
   db.query(sql,params ,(err,result)=>{
 
       if(err) throw err;

@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/c3cb9c913e.js"></script>
     <link rel="stylesheet" href="../style.css">
+    <script src="../js/jquery-1.11.1.js"></script>
+    <script type="module" src="../js/profile.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CUMall | Cart</title>
 </head>
 <body>
     <section id="header">
-        <a><img src="/img/icon.PNG" class="icon" alt=""></a>
+        <a><img src="../img/icon.PNG" class="icon" alt=""></a>
         <!--top lefthand side icon-->  
         <div>
             <ul id="navbar">
@@ -31,30 +33,49 @@
                 <div id="profileform">
                     <div class="account-profile-row">
                         <label class="input-title">Login Email:</label>
-                        <div class="email">eric123456789@gmail.com</div>
+                        <div class="email" id ="email"></div>
                     </div>
-                    <div class="account-profile-row">
-                        <label class="input-title">Contact Email:</label>
-                        <div class="control-group">
-                            <div class="input-combo">
-                                <div class="controls">
-                                    <input id="modifiedEmail" name="modifyiedEmail" type="text" value="eric123456789@gmail.com">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                     
                     <div class="account-profile-row">
                         <label class="input-title">Name</label>
                             <div class="control-group">
                                 <div class="input-combo">
                                     <div class="controls">
-                                        <input id="name" name="name" placeholder="Name" type="text" value="Wong Man Chung">
+                                        <input id="name" name="name" placeholder="Name" type="text"  >
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="account-profile-row">
+                            <label class="input-title">age</label>
+                            <div class="control-group">
+                                <div class="input-combo">
+                                    <div class="controls">
+                                        <input id="age"   type="number" step="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="account-profile-row">
+                            <label class="input-title">gender</label>
+                            <div class="control-group">
+                                <div class="input-combo">
+                                    <div class="controls">
+                                        <select  id="gender">
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                             
+                                          </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     <div>
-                        <button type="submit" class="btn">save</button>
+                        <button type="submit" id="info_save_btn" class="btn">save</button>
                     </div>
                 </div>
             </div>
@@ -77,7 +98,7 @@
                             <div class="control-group">
                                 <div class="input-combo">
                                     <div class="controls">
-                                        <input id="newAccountPassword" name="newAccountPassword" type="password" value>
+                                        <input id="newPassword" name="newAccountPassword" type="password" value>
                                     </div>
                                 </div>
                             </div>
@@ -87,12 +108,12 @@
                             <div class="control-group">
                                 <div class="input-combo">
                                     <div class="controls">
-                                        <input id="checkNewPassword" name="checkNewPassword" type="password" value>
+                                        <input id="newPassword2" name="checkNewPassword" type="password" value>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="account-password-change-submit btn">save</button>
+                        <button id="change_pw_btn" type="button" class="account-password-change-submit btn">save</button>
                     </form>
                 </div>
             </div>
