@@ -17,6 +17,10 @@ a{
     text-decoration: none;
 }
 
+.buy-now {
+    background-color: transparent;
+}
+
 .gallery{
     display: flex;
     flex-wrap: wrap;
