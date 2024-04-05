@@ -32,26 +32,14 @@ db.connect((err)=>{
     } 
 })
 
-app.get('/user_addphoto_icon/:rid/' ,(req,res)=>{
-  var rid = req.params.rid;
 
-  sql = 'select file_path from photo where restaurant_id = ? and image_type = "icon" ' ; 
-   
-  params = [rid];
-  db.query(sql,params,(err,result)=>{
-
-       
+//user function
 
 
 
-      if(err) throw err;
-      console.log(result);
-       res.json(
-          result 
-      );
-  })
- 
-})
+
+//
+
 
 
 // Admin function
@@ -84,7 +72,7 @@ app.get('/get_user/:keyword/' ,(req,res)=>{
   })
  
 })
-
+//
 //Product function
 
 app.get('/get_all_products/' ,(req,res)=>{
@@ -116,7 +104,7 @@ app.get('/get_product/:keyword/' ,(req,res)=>{
   })
  
 })
-
+//
 
 //Order function
 app.get('/create_order/:uid/:price/' ,(req,res)=>{
