@@ -1,5 +1,4 @@
 body{
-    background-image: url("img/background.png");
     background-size: auto;
     overflow-x: hidden;
     margin: 0;
@@ -331,7 +330,7 @@ h2 {
 }
 
 #product1 .pro .des i{
-    font-size: 12px;
+    font-size: 24px;
     color: rgb(243, 181, 25);
 }
 
