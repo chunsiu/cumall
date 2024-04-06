@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/c3cb9c913e.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <script src="../js/jquery-1.11.1.js"></script>
+    <script type="module" src="../js/cart.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUMall | Admin</title>
+</head>
+
+<section id="header">
+    <a><img src="img/icon.PNG" class="icon" alt=""></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="product.html">Product</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span class="badge">3</span></a></li>
+            <li><a href="login.html"><i class="fa-solid fa-user"></i></a></li>
+        </ul>
+    </div>
+</section>
+
+</body>
+<div class="admin-container">
+    <div class="admin-product-form-container">
+        <form action="">
+            <h3>Add New User</h3>
+            <input type="text" placeholder="User name" name="user_name" class="box">
+            <input type="number" placeholder="Age" name="user_age" class="box">
+            <div class="gender-bar">
+                <label for="male">Male</label>
+                <input type="radio" id="male" name="gender" value="male">
+                
+                <label for="female">Female</label>
+                <input type="radio" id="female" name="gender" value="female">
+            </div>
+            <input type="file" accept="image/png, image/jpeg, image/jpg" name="user_image" class="box">
+            <input type="submit" class="btn" name="add" value="Add User">
+        </form>
+    </div>
+</div>
+
+<div class="display-product">
+    <table class="display-product-table">
+        <thead>
+            <tr>
+                <td>user image</td>
+                <td>user name</td>
+                <td>gender</td>
+                <td>user age</td>
+                <td>action</td>
+            </tr>
+        </thead>
+        <tr>
+            <td><img src="/img/icon.PNG"alt=""></td>
+            <td>user name</td>
+            <td>gender</td>
+            <td>user age</td>
+            <td><a href="#" class="btn"><i class="fa-regular fa-pen-to-square"></i>Edit</a>
+                <a href="#" class="btn"><i class="fa-solid fa-trash"></i>Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>

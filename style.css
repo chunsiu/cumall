@@ -638,7 +638,121 @@ footer{
     cursor: pointer;
   }
   
-  .btn {
+#search-sort-container {
+    display: flex;
+    align-items: center;
+}
+
+#search-sort-container .container{
+    width: 600px;
+}
+
+#search-bar {
+    flex: 1;
+    margin-right: 10px;
+}
+
+#sorting-bar {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.admin-container{
+    max-width: 1200px;
+    padding: 2rem;
+    margin: 0 auto;
+
+}
+
+.admin-product-form-container form{
+    max-width: 50rem;
+    margin: auto;
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+
+.admin-product-form-container form h3{
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.admin-product-form-container form .box{
+    width: 100%;
+    border-radius: .5rem;
+    padding: 1.2rem 1.5rem;
+    font-size: 1.7rem;
+    margin: 1rem 0;
+    background: white;
+}
+
+.admin-product-form-container .btn{
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    border-radius: .5rem;
+    margin-top: 1rem;
+    font-size: 1.7rem;
+    padding: 1rem 3rem;
+    background: green;
+    color: white;
+}
+
+.admin-product-form-container .update{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.admin-product-form-container .btn:hover{
+    color: black;
+}
+
+.display-product{
+    margin: 2rem 0;
+    overflow-y: scroll;
+}
+
+.display-product .display-product-table{
+    width: 100%;
+    text-align: center;
+}
+
+.display-product .display-product-table td{ 
+    padding: 1.5rem;
+    font-size: 2rem;
+    border-bottom: white;
+}
+.display-product .display-product-table thead{
+    padding: 1rem;
+    background: grey;
+}
+
+.display-product .display-product-table .btn:first-child{
+    margin-top: 0;
+}
+
+.display-product .display-product-table .btn:first-child:hover{
+    background: black;
+}
+
+.display-product .display-product-table .btn:last-child{
+    background: red;
+}  
+
+.display-product .display-product-table .btn:last-child:hover{
+    background: black;  
+}
+
+.admin-container .admin-product-form-container.update a{
+    width: 88%;
+    text-align: center;
+}
+
+.btn {
     display: inline-block;
     padding: 10px 20px;
     border: none;
