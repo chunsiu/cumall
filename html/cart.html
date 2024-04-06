@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/c3cb9c913e.js"></script>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <script src="../js/jquery-1.11.1.js"></script>
+    <script type="module" src="../js/cart.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CUMall | Cart</title>
 </head>
+<style>
+    .cart .badge {
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			background-color: green;
+			color: #fff;
+			padding: 5px 10px;
+			border-radius: 50%;
+			font-size: 12px;
+		}
+</style>
 <body>
     <section id="header">
         <a><img src="img/icon.PNG" class="icon" alt=""></a>
@@ -17,24 +32,25 @@
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="product.html">Product</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a class="active" class="cart" href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><a class="active cart"   href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span class="badge">3</span></a></li>
                 <li><a href="login.html"><i class="fa-solid fa-user"></i></a></li>
             </ul>
         </div>
     </section></body>
-    <div class="cartheader">
-        <div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div>
-    </div>
-
+    
+<div id="body_container">
     <div class="cartContainer">
-        <div id="root"></div>
-        <div class="sidebar">
-            <div class="head"><p>My Cart</p></div>
-            <div id="cartItem">Your cart is empty</div>
-            <div class="foot">
-                <h3>Total</h3>
-                <h2 id="total">$ 0.00</h2>
-            </div>
-        </div>
+		<h1 class="cartTitle">My Cart</h1>
+		 
+		<div class="cartItems" id="cartItems">
+			
+			
+			
+		</div>
+		<div class="cartFooter">
+			<p class="total">Total: $0.00</p>
+			<button class="checkout">Checkout</button>
+		</div>
+	</div>
     </div>
 </html>

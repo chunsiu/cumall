@@ -1,0 +1,124 @@
+#body_container {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    display:flex;
+    flex-direction: column;  
+      justify-content: center;  
+      align-items: center;  
+}
+h1 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+     text-align: center;
+}
+.cartContainer {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    width:40%;
+}
+.cartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.cartHeader .cartTitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+.cartHeader .cartTotal {
+    font-size: 18px;
+    font-weight: bold;
+}
+.cartItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+.cartItem img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.cartItem .itemDetails {
+    flex: 1;
+}
+.cartItem .itemDetails .itemName {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.cartItem .itemDetails .itemInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.cartItem .itemDetails .itemInfo .infoKey {
+    font-weight: bold;
+    margin-right: 10px;
+}
+.cartItem .itemDetails .itemPrice {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.cartItem .itemDetails .itemQuantity {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.cartItem .itemDetails .itemQuantity .qty {
+    font-size: 16px;
+    margin-right: 10px;
+}
+.cartItem .itemDetails .itemQuantity .qtyInput {
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 50px;
+    text-align: center;
+}
+.cartItem .itemDetails .itemActions {
+    display: flex;
+    align-items: center;
+}
+.cartItem .itemDetails .itemActions .remove {
+    background-color: #f04141;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.cartItem .itemDetails .itemActions .save{
+    background-color: #4caf50;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.cartFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.cartFooter .total {
+    font-size: 18px;
+    font-weight: bold;
+}
+.cartFooter .checkout {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}

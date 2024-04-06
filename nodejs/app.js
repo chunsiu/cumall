@@ -167,11 +167,11 @@ app.get('/get_product/:keyword/' ,(req,res)=>{
 //
 
 //Order function
-app.get('/create_order/:uid/:price/' ,(req,res)=>{
-  var uid = req.params.uid;
-  var price = req.params.price;
-  sql = 'insert into orders (orderprice,orderdate,userid) values (?,now(),?)  ' ; 
-  var params= [price,uid]
+app.get('/product_minus/:id/:qty/' ,(req,res)=>{
+  var id = req.params.id;
+  var qty = req.params.qty;
+  sql= "update product set quantity = quantity - ? where productid = ?";
+          params=[qty,id];
   db.query(sql,params,(err,result)=>{
 
       if(err) throw err;
@@ -180,8 +180,30 @@ app.get('/create_order/:uid/:price/' ,(req,res)=>{
           result 
       );
   })
- 
 })
+
+app.get('/insert_op/:oid/:pid/:qty' ,(req,res)=>{
+  var oid = req.params.oid;
+  var pid = req.params.pid;
+  var qty = req.params.qty;
+  sql= "insert into orderproduct (orderid,productid,quantity) values(?,?,?)";
+
+          params=[oid,pid,qty];
+  db.query(sql,params,(err,result)=>{
+
+      if(err) throw err;
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+})
+
+
+ 
+
+ 
+ 
 app.post('/create_order2/' ,(req,res)=>{
   var uid = req.body.uid;
   var price = req.body.price;
@@ -192,39 +214,41 @@ app.post('/create_order2/' ,(req,res)=>{
   var params= [price,uid];
  db.query(sql,params,(err,result)=>{
         var orderid = result.insertId;
-        console.log("order created");
-        for(var i=0;i<list.length;i++){
-          sql= "update product set quantity = quantity - ? where productid = ?";
-          params=[list[i].qty,list[i].productid];
-          db.query(sql,params,(err,result)=>{
-            console.log("qty minus");
-      })
-
-
-        }
-        for(var i=0;i<list.length;i++){
-          sql= "insert into orderproduct (orderid,productid,quantity) values(?,?,?)";
-
-          params=[orderid,list[i].productid,list[i].qty];
-          db.query(sql,params,(err,result)=>{
-            console.log("op inserted");
-      })
-
-
-        }
-
+        
         
         res.json(
-          {"message":"order created"}
+          {"orderid":orderid}
         )
   
 })
 
-  
-
-   
- 
 })
+app.get('/product_minus/:pid/:qty' ,(req,res)=>{
+  var pid = req.params.pid;
+  var qty = req.params.qty;
+   
+  
+  
+  sql= "update product set quantity = quantity - ? where productid = ?";
+          params=[qty,pid];
+ db.query(sql,params,(err,result)=>{
+     
+        
+
+
+        })
+       
+        res.json(
+          {"message":"success"}
+        )
+  
+})
+
+
+
+
+ 
+
 
 
 

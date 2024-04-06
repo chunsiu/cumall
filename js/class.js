@@ -9,9 +9,38 @@ export class product{
         this.cover=cover;
 
     }
-
-
-
-
-
 }
+export var ProductList=[];
+
+export var CartList=[];
+
+export function session_save_List(productList){
+        sessionStorage.setItem('ProductList',JSON.stringify(productList));
+}
+
+export function session_get_List(){
+    return  JSON.parse(sessionStorage.getItem('ProductList'));
+}
+
+export function session_save_Cart(productList){
+    sessionStorage.setItem('CartList',JSON.stringify(productList));
+}
+
+export function session_get_Cart(){
+    return  JSON.parse(sessionStorage.getItem('CartList'));
+}
+
+
+
+
+export function getProductById(productList,id){
+    return productList.find(product=>product.id==id);
+}
+
+export function removeProductById(productList,id){
+    return productList.filter(product=>product.id!=id);
+     
+}
+
+
+

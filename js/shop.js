@@ -1,7 +1,8 @@
-import {product} from './class.js';
+import {product,ProductList,CartList,getProductById,session_save_List,session_get_List,session_save_Cart} from './class.js';
 $(document).ready(function(){
      
-    var productList= [] ;
+     var productList=[];
+     var productList1=[];
 
     function add_product(product){
         var name = product.name;
@@ -47,9 +48,12 @@ $(document).ready(function(){
 
               }
               for(var i=0;i<productList.length;i++){
-                console.log(productList);
+                 
                $('#productList').append(add_product(productList[i]));  
               }
+              session_save_List(productList);
+              session_save_Cart(productList);  //test  // 
+
                  
             }		
          
@@ -60,6 +64,11 @@ $(document).ready(function(){
 
 
     get_all_product();
+     
+    //test   session     will remove after product detail page finished
+
+
+    //
 
 
 

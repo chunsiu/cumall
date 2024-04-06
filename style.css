@@ -506,11 +506,7 @@ footer{
     font-size: 36px;
 }
 
-.cartContainer{
-    display: flex;
-    width: 100%;
-    margin-bottom: 30px;
-}
+ 
 
 #root{
     width: 60%;
