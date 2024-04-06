@@ -20,7 +20,7 @@ function load_profile(){
           var gender = result[0].gender;
 
           $("#name").val(name);
-          $("#email").html(email);
+          $("#email").val(email);
           $("#age").val(age);
           $("#gender").val(gender);
              
