@@ -18,6 +18,90 @@ export function session_save_List(productList){
         sessionStorage.setItem('ProductList',JSON.stringify(productList));
 }
 
+export function db_update_product_qty_by_Id(pid,uid,qty){
+    console.log("qty: "+qty);
+    console.log("pid : " +pid);
+    $.ajax({
+        type: 'get',
+        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+        url:'http://localhost:3100/cart_product_qty_change/'+pid+'/'+qty+'/'+uid+'/',
+        dataType:'json',
+        success: function(result){
+          console.log(result);           
+        }		
+        
+ }); 
+}
+
+export function db_remove_product_by_Id(pid,uid){
+    $.ajax({
+        type: 'get',
+        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+        url:'http://localhost:3100/cart_remove_product/'+uid+'/'+pid+'/',
+        dataType:'json',
+        success: function(result){
+          console.log(result);           
+        }		
+        
+ }); 
+}
+function add_cart_product(cartList){
+    var html="";
+    var product;
+    for(var i =0;i<cartList.length;i++){
+        html="";
+        product=cartList[i];
+        html+='<div class="cartItem" productid="'+product.id+'">  ';
+        html+='<img src="'+product.cover+'" alt="Product">';
+        html+='<div class="itemDetails">';
+        html+='   <p class="itemName">'+product.name+'</p>';
+       /*  html+='    <div class="itemInfo">';
+        html+='        <p class="infoKey">Color:</p>';
+        html+='        <p class="infoValue">Black</p>';
+        html+='    </div>';
+        html+='    <div class="itemInfo">';
+        html+='        <p class="infoKey">Size:</p>';
+        html+='        <p class="infoValue">M</p>';
+        html+='    </div>'; */
+        html+='    <p class="itemPrice" id="price">$'+product.price*product.qty+'</p>';
+        html+='    <div class="itemQuantity">';
+                
+        html+='        <button class="minus-btn"><i class="fas fa-minus"></i></button><input type="number" class="qtyInput" min = "1" value="'+product.qty+'"  ><button class="plus-btn"><i class="fas fa-plus"></i></button>';
+        html+='    </div>';
+        html+='    <div class="itemActions">';
+        html+='       <button class="remove">Remove</button>';
+                  
+        html+='   </div>';
+        html+='</div>';
+        html+='</div>';
+        $("#cartItems").append(html);
+
+    }
+
+ }
+
+export function db_get_cart(uid){
+    var cartList=[];
+    $.ajax({
+        type: 'get',
+        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+        url:'http://localhost:3100/get_cart/'+uid+'/',
+        dataType:'json',
+        success: function(result){
+          console.log(result); 
+          for(var i=0;i<result.length;i++){
+            cartList.push(new product(result[i].productid,result[i].productname,result[i].price,result[i].quantity,result[i].description,result[i].rating,result[i].path));
+
+          }  
+          add_cart_product(cartList);
+          return cartList;    
+        }	
+        	
+        
+ }); 
+}
+
+
 export function session_get_List(){
     return  JSON.parse(sessionStorage.getItem('ProductList'));
 }

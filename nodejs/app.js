@@ -233,16 +233,125 @@ app.get('/product_minus/:pid/:qty' ,(req,res)=>{
           params=[qty,pid];
  db.query(sql,params,(err,result)=>{
      
+  if(err){
+    throw err
+ }else{
+  console.log(result);
+  res.json(
+    result
+  )
+ }
+
+
+        })
+       
+        
+  
+})
+
+//cart function
+app.get('/cart_product_qty_change/:pid/:qty/:uid' ,(req,res)=>{
+  var pid = req.params.pid;
+  var qty = req.params.qty;
+  var uid = req.params.uid; 
+  
+  
+  sql= "update cart set quantity = ? where productid = ? and userid = ?";
+          params=[qty,pid,uid];
+ db.query(sql,params,(err,result)=>{
+  if(err){
+    throw err
+ }else{
+  console.log(result);
+  res.json(
+    result
+  )
+ }
         
 
 
         })
        
-        res.json(
-          {"message":"success"}
-        )
+        
   
 })
+
+app.get('/get_cart/:uid' ,(req,res)=>{
+   
+  var uid = req.params.uid; 
+  
+  
+  sql= "select c.*,p.productname,p.price,p.description,p.rating,ph.path from cart c, product p ,photo ph where p.productid= c.productid and p.productid = ph.productid and type ='cover' and userid = ? ";
+          params=[uid];
+ db.query(sql,params,(err,result)=>{
+  if(err){
+    throw err
+ }else{
+  console.log(result);
+  res.json(
+    result
+  )
+ }
+
+
+        })
+       
+         
+  
+})
+
+app.get('/cart_add_product/:uid/:pid/:qty/' ,(req,res)=>{
+   
+  var pid = req.params.pid;
+  var qty = req.params.qty;
+  var uid = req.params.uid;  
+  
+  
+  sql= "insert into cart (productid,quantity,userid) values (?,?,?)";
+          params=[pid,qty,uid];
+ db.query(sql,params,(err,result)=>{
+     
+  if(err){
+    throw err
+ }else{
+  console.log(result);
+  res.json(
+    result
+  )
+ }
+
+        })
+       
+         
+  
+})
+app.get('/cart_remove_product/:uid/:pid/' ,(req,res)=>{
+   
+  var pid = req.params.pid;
+   
+  var uid = req.params.uid;  
+  
+  
+  sql= "delete from cart where userid = ? and productid = ? ";
+          params=[uid,pid];
+ db.query(sql,params,(err,result)=>{
+  if(err){
+    throw err
+ }else{
+  console.log(result);
+  res.json(
+    result
+  )
+ }
+        
+
+
+        })
+       
+         
+  
+})
+
 
 
 
