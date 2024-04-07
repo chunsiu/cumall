@@ -34,7 +34,7 @@
                         <form class="search-form" action="#" method="GET">
                             <div class="search-wrapper">
                                 <i class="fa fa-search fa-fw icon"></i>
-                                <input type="text" class="search-input" name="search" placeholder="Search...">
+                                <input type="text" id="search" class="search-input" name="search" placeholder="Search...">
                             </div>
                         </form>
                     </div>
@@ -47,9 +47,9 @@
                         <label for="sort-by">Sort By:</label>
                         <select id="sort-by">
                             <option value="name">Name</option>
-                            <option value="name">Rating</option>
-                            <option value="price-low-to-high">Price Low to High</option>
-                            <option value="price-high-to-low">Price High to Low</option>
+                            <option value="rating">Rating</option>
+                            <option value="asc_price">Price Low to High</option>
+                            <option value="desc_price">Price High to Low</option>
                         </select>
                     </div>
                 </div>
@@ -57,6 +57,7 @@
         </div>
 
     <div class="gallery" id="productList">
+    
          
 </body>
 </html>
