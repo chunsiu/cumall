@@ -148,6 +148,13 @@ $(document).ready(function () {
 
   })
 
+  $('#test').click(function () {
+
+    $('#productList').toggle();
+
+
+  })
+
   $('#sort-by').change(function () {
 
     var sortBy =  $(this).val();

@@ -10,6 +10,19 @@ export class product{
 
     }
 }
+
+export class user{
+    constructor(id,name,email,age,gender){
+        this.id=id;
+        this.name=name;
+        this.email=email;
+        this.age=age;
+        this.gender=gender;
+    }
+}
+
+
+
 export var ProductList=[];
 
 export var CartList=[];
@@ -101,6 +114,48 @@ export function db_get_cart(uid){
  }); 
 }
 
+export function db_update_user_by_Id(uid,name,email,gender,age){
+     console.log('here 1');
+    $.ajax({
+        type: 'get',
+        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+        url:'http://localhost:3100/update_user_info/'+uid+'/'+name+'/'+email+'/'+gender+'/'+age,
+        
+        success: function(result){
+            console.log('here 2');
+          console.log(result);           
+        }		
+        
+ }); 
+}
+export function db_delete_user_by_Id(uid,name,email,gender,age){
+    
+   $.ajax({
+       type: 'get',
+       headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+       url:'http://localhost:3100/delete_user_by_Id/'+uid+'/' ,
+       
+       success: function(result){
+            
+         console.log(result);           
+       }		
+       
+}); 
+}
+export function db_insert_user(name,email,gender,age){
+    console.log('here 1');
+   $.ajax({
+       type: 'get',
+       headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+       url:'http://localhost:3100/insert_new_user/'+name+'/'+email+'/'+gender+'/'+age ,
+       
+       success: function(result){
+            
+         console.log(result);           
+       }		
+       
+}); 
+}
 
 export function session_get_List(){
     return  JSON.parse(sessionStorage.getItem('ProductList'));

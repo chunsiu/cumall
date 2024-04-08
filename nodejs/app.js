@@ -87,11 +87,14 @@ app.post('/change_pw/' ,(req,res)=>{
 // Admin function
 app.get('/get_all_users/' ,(req,res)=>{
   
-  sql = 'select * from users  ' ; 
+  sql = 'select userid,username,email,iconpath,age,gender from users  ' ; 
    
   db.query(sql,(err,result)=>{
 
-      if(err) throw err;
+      if(err){
+        console.log(err); 
+        throw err;
+      }
       console.log(result);
        res.json(
           result 
@@ -102,7 +105,7 @@ app.get('/get_all_users/' ,(req,res)=>{
 
 app.get('/get_user/:keyword/' ,(req,res)=>{
   var keyword = "%"+req.params.keyword+"%";
-  sql = 'select * from users where  username like ? or userid like ?  ' ; 
+  sql = 'select userid,username,email,iconpath,age,gender from users where  username like ? or userid like ?  ' ; 
   params = [keyword,keyword];
   db.query(sql,params ,(err,result)=>{
 
@@ -128,6 +131,64 @@ app.get('/get_user2/:id/' ,(req,res)=>{
       );
   })
  
+})
+app.get('/insert_new_user/:name/:email/:gender/:age/' ,(req,res)=>{
+  var name = req.params.name;
+  var email = req.params.email;
+  var gender = req.params.gender;
+  var age = req.params.age;
+  sql = 'insert into users (username,email,gender,age) values(?,?,?,?)  ' ; 
+  params = [name,email,gender,age];
+  db.query(sql,params ,(err,result)=>{
+
+      if(err) throw err;
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+ 
+})
+
+
+app.get('/update_user_info/:id/:name/:email/:gender/:age' ,(req,res)=>{
+  var uid = req.params.id;
+  var name = req.params.name;
+  var email = req.params.email;
+  var gender = req.params.gender;
+  var age = req.params.age;
+  sql = 'update users set username=? , email=?, gender=? ,age=? where  userid =?  ' ; 
+  params = [name,email,gender,age,uid];
+  db.query(sql,params ,(err,result)=>{
+
+       if(err){
+        console.log(err); 
+        throw err;
+      }
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+})
+
+   
+  app.get('/delete_user_by_Id/:id/' ,(req,res)=>{
+    var uid = req.params.id;
+     
+    sql = 'delete from users  where  userid =?  ' ; 
+    params = [uid];
+    db.query(sql,params ,(err,result)=>{
+  
+         if(err){
+          console.log(err); 
+          throw err;
+        }
+        console.log(result);
+         res.json(
+            result 
+        );
+    })
 })
 //
 //Product function

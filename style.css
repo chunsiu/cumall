@@ -719,12 +719,13 @@ footer{
 .display-product .display-product-table{
     width: 100%;
     text-align: center;
+     padding:5%;
 }
 
 .display-product .display-product-table td{ 
     padding: 1.5rem;
     font-size: 2rem;
-    border-bottom: white;
+     
 }
 .display-product .display-product-table thead{
     padding: 1rem;
@@ -782,3 +783,62 @@ footer{
     }
 
 }
+/* admin management  */
+#add_user_title{
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 2.5rem;
+
+}
+
+.h3-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .h3-title {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .toggle-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  .toggle-btn .toggle-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  .toggle-btn.active .toggle-icon {
+    transform: rotate(45deg);
+  }
+
+  .display-product-table table, th, td {
+    border: 1px solid black;
+  }
+
+  .editable-row {
+    border: 2px solid red;
+}
+.error {
+    color: red;
+    font-weight: bold;
+  }
+
+
+  
