@@ -128,6 +128,23 @@ export function db_update_user_by_Id(uid,name,email,gender,age){
         
  }); 
 }
+
+export function db_update_product_by_Id(id,name,price,qty,desc){
+     
+   $.ajax({
+       type: 'get',
+       headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+       url:'http://localhost:3100/update_product_info/'+id+'/'+name+'/'+price+'/'+qty+'/'+desc,
+       
+       success: function(result){
+            
+         console.log(result);           
+       }		
+       
+}); 
+} 
+
+
 export function db_delete_user_by_Id(uid,name,email,gender,age){
     
    $.ajax({
@@ -142,12 +159,28 @@ export function db_delete_user_by_Id(uid,name,email,gender,age){
        
 }); 
 }
-export function db_insert_user(name,email,gender,age){
+
+export function db_delete_product_by_Id(uid){
+    
+    $.ajax({
+        type: 'get',
+        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+        url:'http://localhost:3100/delete_product_by_Id/'+uid+'/' ,
+        
+        success: function(result){
+             
+          console.log(result);           
+        }		
+        
+ }); 
+ }
+
+export function db_insert_product(name,price,quantity,desc){
     console.log('here 1');
    $.ajax({
        type: 'get',
        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
-       url:'http://localhost:3100/insert_new_user/'+name+'/'+email+'/'+gender+'/'+age ,
+       url:'http://localhost:3100/insert_new_product/'+name+'/'+price+'/'+quantity+'/'+desc ,
        
        success: function(result){
             
@@ -156,6 +189,12 @@ export function db_insert_user(name,email,gender,age){
        
 }); 
 }
+
+ 
+
+
+//get all product
+
 
 export function session_get_List(){
     return  JSON.parse(sessionStorage.getItem('ProductList'));

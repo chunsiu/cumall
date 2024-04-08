@@ -9,10 +9,12 @@ $(document).ready(function () {
     var description = product.desc;
     var price = product.price;
     var rating = product.rating;
-    var cover = product.cover;
+    var id = product.id;
+     
+     
     var html = '';
     html += '<div class="content">';
-    html += '<img src="' + cover + '">';
+    html += '<img src="../img/product/'+id+'/cover.png">';
     html += '<h3>' + name + '</h3>';
     html += '<p>' + description + '</p>';
     html += '<h6>$' + price + '</h6>';
@@ -44,7 +46,7 @@ $(document).ready(function () {
       success: function (result) {
         console.log(result);
         for (var i = 0; i < result.length; i++) {
-          productList.push(new product(result[i].productid, result[i].productname, result[i].price, result[i].quantity, result[i].description, result[i].rating, result[i].path));
+          productList.push(new product(result[i].productid, result[i].productname, result[i].price, result[i].quantity, result[i].description, result[i].rating));
 
         }
         displayList = productList;
@@ -119,7 +121,9 @@ $(document).ready(function () {
 
   function update_display_product() {
     $('#productList').children().remove();
+    console.log('update');
     for (var i = 0; i < displayList.length; i++) {
+      console.log(displayList[i]);
 
       $('#productList').append(add_product(displayList[i]));
     }
@@ -141,7 +145,7 @@ $(document).ready(function () {
   $('#search').on('input',function () {
 
     var keyword =  $(this).val();
-    console.log('hi');
+     
     displayList = filtered_by_keyword(productList,keyword);
     update_display_product();
 
@@ -161,10 +165,10 @@ $(document).ready(function () {
     console.log('hi');
 
     switch(sortBy){
-    case 'name': displayList = sort_by_name(productList);break;
-    case 'rating': displayList = sort_by_rating(productList);break;
-    case 'asc_price': displayList = sort_by_price_asc(productList);break;
-    case 'desc_price': displayList = sort_by_price_desc(productList);break;
+    case 'name': displayList = sort_by_name(displayList);break;
+    case 'rating': displayList = sort_by_rating(displayList);break;
+    case 'asc_price': displayList = sort_by_price_asc(displayList);break;
+    case 'desc_price': displayList = sort_by_price_desc(displayList);break;
 
      
     default:

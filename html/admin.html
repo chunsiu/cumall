@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/c3cb9c913e.js"></script>
     <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../css/cart.css">
+     
     <script src="../js/jquery-1.11.1.js"></script>
-    <script type="module" src="../js/cart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script type="module" src="../js/admin.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CUMall | Admin</title>
+
+    
+
 </head>
 
 <section id="header">
-    <a><img src="img/icon.PNG" class="icon" alt=""></a>
+    <a><img src="../img/icon.PNG" class="icon" alt=""></a>
     <div>
         <ul id="navbar">
             <li><a href="index.html">Home</a></li>
@@ -29,12 +34,27 @@
 </body>
 <div class="admin-container">
     <div class="admin-product-form-container">
-        <form action="">
-            <h3>Add New Product</h3>
+
+        <div class="h3-container">
+            <h3 class="h3-title" id="add_user_title">Add New product</h3>
+            <div class="toggle-btn">
+              <span class="toggle-icon">-</span>
+            </div>
+          </div>
+
+         
+        <form id="add_product_form" action="">
+             
             <input type="text" placeholder="product name" name="product_name" class="box">
-            <input type="number" placeholder="produce price" name="product_price" class="box">
-            <input type="file" accept="image/png, image/jpeg, image/jpg" name="product_image" class="box">
-            <input type="submit" class="btn" name="add" value="Add Product">
+            <input type="number" placeholder="price" name="price" class="box">
+            <input type="number" placeholder="quantity" name="quantity" class="box">
+             
+            <textarea placeholder="description" name="description" rows="5" cols="30">
+           </textarea>
+            
+            <input type="file" accept="image/png, image/jpeg, image/jpg" name="user_image" class="box">
+            <div id="form_error"></div>
+            <input type="submit" class="btn" name="add" value="Add product">
         </form>
     </div>
 </div>
@@ -43,20 +63,18 @@
     <table class="display-product-table">
         <thead>
             <tr>
-                <td>product image</td>
-                <td>product name</td>
-                <td>product price</td>
+                <td>product id</td>     
+                <td>name</td>
+                <td>price</td>
+                <td>description</td>       
+                <td>quantity</td>
                 <td>action</td>
+                
             </tr>
         </thead>
-        <tr>
-            <td><img src="/img/icon.PNG"alt=""></td>
-            <td>product name</td>
-            <td>product price</td>
-            <td><a href="#" class="btn"><i class="fa-regular fa-pen-to-square"></i>Edit</a>
-                <a href="#" class="btn"><i class="fa-solid fa-trash"></i>Delete</a>
-            </td>
-        </tr>
+        
     </table>
 </div>
+
+ 
 </body>

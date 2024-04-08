@@ -34,6 +34,38 @@ db.connect((err)=>{
 
 
 //user function
+// Register function
+app.post('/register', (req, res) => {
+  const { username, password, email, iconpath } = req.body;
+  const sql = 'INSERT INTO users (username, password, email, iconpath) VALUES (?, ?, ?, ?)';
+  const params = [username, password, email, iconpath];
+
+  db.query(sql, params, (err, result) => {
+      if (err) throw err;
+      console.log(result);
+      res.json(result);
+  });
+});
+
+// Login function
+app.post('/login', (req, res) => {
+  console.log('hihi');
+  const { username, password } = req.body;
+  const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
+  const params = [username, password];
+
+  db.query(sql, params, (err, result) => {
+      if (err) throw err;
+      console.log(result);
+      if (result.length > 0) {
+          res.json({ status: 'success', message: 'Login successful', user: result[0] });
+      } else {
+          res.json({ status: 'error', message: 'Invalid username or password' });
+      }
+  });
+});
+
+//kenneth
 
 app.get('/update_profile/:id/:name/:gender/:age/' ,(req,res)=>{
   var id = req.params.id;
@@ -191,11 +223,76 @@ app.get('/update_user_info/:id/:name/:email/:gender/:age' ,(req,res)=>{
     })
 })
 //
+//admin product
+app.get('/insert_new_product/:name/:price/:quantity/:desc/' ,(req,res)=>{
+  var name = req.params.name;
+  var price = req.params.price;
+  var quantity = req.params.quantity;
+  var desc = req.params.desc;
+  sql = 'insert into product (productname,price,quantity,description) values(?,?,?,?)  ' ; 
+  params = [name,price,quantity,desc];
+  db.query(sql,params ,(err,result)=>{
+
+      if(err) throw err;
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+ 
+})
+
+
+app.get('/update_product_info/:id/:name/:price/:quantity/:description' ,(req,res)=>{
+  var pid = req.params.id;
+  var name = req.params.name;
+  var price = req.params.price;
+  var quantity = req.params.quantity;
+  var description = req.params.description;
+  sql = 'update product set productname=? , price=?, quantity=? ,description=? where  productid =?  ' ; 
+  params = [name,price,quantity,description,pid];
+  db.query(sql,params ,(err,result)=>{
+
+       if(err){
+        console.log(err); 
+        throw err;
+      }
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+})
+
+   
+  app.get('/delete_product_by_Id/:id/' ,(req,res)=>{
+    var id = req.params.id;
+     
+    sql = 'delete from product  where  productd =?  ' ; 
+    params = [id];
+    db.query(sql,params ,(err,result)=>{
+  
+         if(err){
+          console.log(err); 
+          throw err;
+        }
+        console.log(result);
+         res.json(
+            result 
+        );
+    })
+})
+
+
+
+//
+
+
 //Product function
 
 app.get('/get_all_products/' ,(req,res)=>{
   
-  sql = 'select p.productid,productname,price,quantity,description,rating,path from product p, photo ph where p.productid = ph.productid  ' ; 
+  sql = 'select p.productid,productname,price,quantity,description,rating from product p   ' ; 
    
   db.query(sql,(err,result)=>{
 
