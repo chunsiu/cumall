@@ -251,7 +251,7 @@ h2 {
 
 
 #hero{
-    background-image: url("img/hero4.png");
+    background-image: url("img/homeBackground.jpg");
     height: 90vh;
     width: 100%;
     background-size: cover;
@@ -263,6 +263,20 @@ h2 {
     justify-content: center;
 }
 
+#hero h4{
+    font-size: 75px;
+}
+
+#hero h2{
+    font-size: 125px;
+}
+
+#hero h1{
+    font-size: 30px;
+}
+#hero p{
+    font-size: 25px;
+}
 #feature{
     display: flex;
     align-items: center;
