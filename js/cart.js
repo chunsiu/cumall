@@ -159,7 +159,7 @@ $(document).ready(function () {
             html = "";
             product = cartList[i];
             html += '<div class="cartItem" productid="' + product.id + '">  ';
-            html += '<img src="' + product.cover + '" alt="Product">';
+            html += '<img src="../img/product/' + product.id + '/cover.png" alt="Product">';
             html += '<div class="itemDetails">';
             html += '   <p class="itemName">' + product.name + '</p>';
             /*  html+='    <div class="itemInfo">';

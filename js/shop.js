@@ -29,7 +29,7 @@ $(document).ready(function () {
     }
 
     html += '</ul>';
-    html += '<button class="buy-1">Buy Now</button>';
+    html += '<a href="product.html?pid='+id+'" ><button class="buy-1">Buy Now</button></a>';
     html += ' </div>';
 
     return html;

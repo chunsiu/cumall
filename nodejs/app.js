@@ -242,7 +242,7 @@ app.get('/insert_new_product/:name/:price/:quantity/:desc/' ,(req,res)=>{
  
 })
 
-
+ 
 app.get('/update_product_info/:id/:name/:price/:quantity/:description' ,(req,res)=>{
   var pid = req.params.id;
   var name = req.params.name;
@@ -309,6 +309,22 @@ app.get('/get_product/:keyword/' ,(req,res)=>{
   var keyword = "%"+req.params.keyword+"%";
   sql = 'select * from product where  productname like ? or productid like ?  ' ; 
   params = [keyword,keyword];
+  db.query(sql,params ,(err,result)=>{
+
+      if(err) throw err;
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+ 
+})
+
+
+app.get('/get_product_by_id/:id/' ,(req,res)=>{
+  var id = req.params.id;
+  sql = 'select * from product where  productId = ?  ' ; 
+  params = [id];
   db.query(sql,params ,(err,result)=>{
 
       if(err) throw err;
@@ -434,12 +450,57 @@ app.get('/cart_product_qty_change/:pid/:qty/:uid' ,(req,res)=>{
   
 })
 
+//review
+
+app.get('/get_review/:pid' ,(req,res)=>{
+   
+  var pid = req.params.pid; 
+  
+  
+  sql= "select r.*,u.username from review r,users u   where r.userid=u.userid and productid= ?";
+          params=[pid];
+ db.query(sql,params,(err,result)=>{
+  if(err){
+    throw err
+ }else{
+  console.log(result);
+  res.json(
+    result
+  )
+ }
+
+        })
+            
+})
+
+app.post('/insert_review/' ,(req,res)=>{
+  var uid = req.body.uid;
+  var pid = req.body.pid;
+  var content = req.body.content;
+  var rating  =req.body.rating;
+ 
+  sql = 'insert into review (content,rating,userid,productid) values(?,?,?,?)  ' ; 
+  var params = [content,rating,uid,pid]; 
+  db.query(sql,params,(err,result)=>{
+
+      if(err) throw err;
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+  
+ 
+})
+
+
+
 app.get('/get_cart/:uid' ,(req,res)=>{
    
   var uid = req.params.uid; 
   
   
-  sql= "select c.*,p.productname,p.price,p.description,p.rating,ph.path from cart c, product p ,photo ph where p.productid= c.productid and p.productid = ph.productid and type ='cover' and userid = ? ";
+  sql= "select c.*,p.productname,p.price,p.description,p.rating from cart c, product p  where p.productid= c.productid   and userid = ? ";
           params=[uid];
  db.query(sql,params,(err,result)=>{
   if(err){
@@ -465,8 +526,8 @@ app.get('/cart_add_product/:uid/:pid/:qty/' ,(req,res)=>{
   var uid = req.params.uid;  
   
   
-  sql= "insert into cart (productid,quantity,userid) values (?,?,?)";
-          params=[pid,qty,uid];
+  sql= "INSERT INTO cart (productid,userid,quantity)SELECT ?,?,? FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM cart WHERE productid = ? and userid=?);";
+          params=[pid,qty,uid,pid,uid];
  db.query(sql,params,(err,result)=>{
      
   if(err){

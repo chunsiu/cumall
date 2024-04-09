@@ -841,12 +841,28 @@ footer{
   }
  
   textarea {
-    width: 100%;
+    width: 90%;
     height: 150px;
     font-size: 16px;
     padding: 10px;
     border: 1px solid #ccc;
-    resize: both; /* 允许用户手动调整大小 */
+    resize: both;  
   }
+  .add-to-cart-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    transition: background-color 0.3s ease;  
+}
+.add-to-cart-button:hover {
+    background-color: #3e8e41;  
+}
 
+#product-details{
+    padding-top:5%;
+}
   
