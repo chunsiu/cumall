@@ -1,9 +1,12 @@
+import { product,session_get_login_userId } from './class.js';
 $(document).ready(function(){
 
 
 //test user id      will change after login function completed
-var userid = 1;
+//var userid = 1;
 //
+
+var userid = session_get_login_userId(); 
 
 function load_profile(){
     $.ajax({

@@ -114,6 +114,30 @@ export function db_get_cart(uid){
  }); 
 }
 
+export function db_insert_user(name,email,gender,age,pw){
+    var data={
+        name:name,
+        pw:pw,
+        gender:gender,
+        age:age,
+        email:email
+
+    };
+   $.ajax({
+       type: 'post',
+       headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+       data:JSON.stringify(data),
+       contentType: "application/json; charset=utf-8",
+       url:'http://localhost:3100/insert_new_user/' ,
+       
+       success: function(result){
+            
+         console.log(result);           
+       }		
+       
+}); 
+}
+
 export function db_update_user_by_Id(uid,name,email,gender,age){
      console.log('here 1');
     $.ajax({
@@ -197,6 +221,23 @@ export function db_insert_product(name,price,quantity,desc){
 
 //get all product
 
+export function session_login_user(id,name){
+    sessionStorage.setItem('login_user_id', id);
+    sessionStorage.setItem('login_user_name', name);
+}
+export function session_logout_user(){
+    sessionStorage.removeItem('login_user_id');
+    sessionStorage.removeItem('login_user_name');
+    sessionStorage.clear();
+}
+
+export function session_get_login_userId(){
+    return  sessionStorage.getItem('login_user_id');
+}
+export function session_get_login_userName(){
+    return  sessionStorage.getItem('login_user_name');
+}
+
 
 export function session_get_List(){
     return  JSON.parse(sessionStorage.getItem('ProductList'));
@@ -205,6 +246,7 @@ export function session_get_List(){
 export function session_save_Cart(productList){
     sessionStorage.setItem('CartList',JSON.stringify(productList));
 }
+
 
 export function session_get_Cart(){
     return  JSON.parse(sessionStorage.getItem('CartList'));

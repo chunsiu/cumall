@@ -1,7 +1,8 @@
-import { product, ProductList, CartList, session_get_Cart, getProductById, db_update_product_qty_by_Id, removeProductById, db_remove_product_by_Id, } from './class.js';
+import { product, session_get_login_userId, getProductById, db_update_product_qty_by_Id, removeProductById, db_remove_product_by_Id, } from './class.js';
 $(document).ready(function () {
     //main
-    var userid = 1; //test 
+   // var userid = 1; //test 
+   var userid =  session_get_login_userId();
 
     var cartList = [];
 
@@ -69,12 +70,18 @@ $(document).ready(function () {
                           console.log(result);  
                           var db_qty=result[0].quantity;
                           if(db_qty>=qty+1){
-                            db_update_product_qty_by_Id(id, userid, qty + 1);
+                            console.log("test");
+                            qty++;
+                            console.log("test");
+                            console.log(qty);
+                            db_update_product_qty_by_Id(id, userid, qty);
 
                             //update ui qty
-                            $(this).siblings('.qtyInput').val(qty + 1);
+                            
+
+                            $('.plus-btn').siblings('.qtyInput').val(qty.toString());
                             //update ui price
-                            update_subtotal(id, product.price, qty + 1);
+                            update_subtotal(id, product.price, qty);
                           }else{
                             alert('sorry, not enough stock');
                           }

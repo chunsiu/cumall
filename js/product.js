@@ -1,9 +1,12 @@
-import { product } from './class.js';
+import { product,session_get_login_userId } from './class.js';
 $(document).ready(function () {
 
     //testing userid
 
-    var userid = 1;
+   // var userid = 1;
+
+   var userid =  session_get_login_userId();
+   console.log("userid :"+userid);
     var urlParams = new URLSearchParams(window.location.search);
     var productId = urlParams.get('pid');
      
@@ -89,11 +92,34 @@ $(document).ready(function () {
      }
 
      $('#cart_btn').click(function(){
-        if(check_stock()){
-        db_add_product_to_cart(userid,productId,1);
-        }else{
-            alert('sorry, not enough stock');
+        if(session_get_login_user()){
+             
+            $.ajax({
+                type: 'get',
+                headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+                url:'http://localhost:3100/get_product_by_Id/'+productId+'/' ,
+                
+                success: function(result){
+                     
+                  console.log(result);  
+                 var db_qty=result[0].quantity;
+                 if(db_qty>0){
+                    db_add_product_to_cart(userid,productId,1);
+                    }else{
+                        alert('sorry, not enough stock');
+                    }
+                }		
+                
+         }); 
+
+
+
+        
+    }else{
+        if(window.confirm("you have to login before using cart function, you want to login first?")){
+            window.location.href = "login.html";
         }
+    }
 
 
 

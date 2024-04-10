@@ -234,6 +234,7 @@ h2 {
 }
 
 #navbar li a:hover,
+#navbar li:hover,
 #navbar li a.active{
     color:#088178;
 }
@@ -878,5 +879,16 @@ footer{
 
 #product-details{
     padding-top:5%;
+}
+
+.cart .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #088178;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 12px;
 }
   

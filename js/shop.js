@@ -134,8 +134,7 @@ $(document).ready(function () {
 
 
 
-  //main
-
+ //main
 
   get_all_product();
 

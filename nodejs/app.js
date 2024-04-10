@@ -51,7 +51,7 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
   console.log('hihi');
   const { username, password } = req.body;
-  const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
+  const sql = 'SELECT * FROM users WHERE email = ? AND password = ?';
   const params = [username, password];
 
   db.query(sql, params, (err, result) => {
@@ -60,12 +60,30 @@ app.post('/login', (req, res) => {
       if (result.length > 0) {
           res.json({ status: 'success', message: 'Login successful', user: result[0] });
       } else {
-          res.json({ status: 'error', message: 'Invalid username or password' });
+          res.json({ status: 'error', message: 'Invalid email or password' });
       }
   });
 });
 
 //kenneth
+
+
+
+app.get('/check_email/:email/' ,(req,res)=>{
+  var email = req.params.email;
+  
+  sql = 'select * from users where email = ?  ' ; 
+  var params = [email]; 
+  db.query(sql,params,(err,result)=>{
+
+      if(err) throw err;
+      console.log(result);
+       res.json(
+          result 
+      );
+  })
+ 
+})
 
 app.get('/update_profile/:id/:name/:gender/:age/' ,(req,res)=>{
   var id = req.params.id;
@@ -164,13 +182,14 @@ app.get('/get_user2/:id/' ,(req,res)=>{
   })
  
 })
-app.get('/insert_new_user/:name/:email/:gender/:age/' ,(req,res)=>{
-  var name = req.params.name;
-  var email = req.params.email;
-  var gender = req.params.gender;
-  var age = req.params.age;
-  sql = 'insert into users (username,email,gender,age) values(?,?,?,?)  ' ; 
-  params = [name,email,gender,age];
+app.post('/insert_new_user/' ,(req,res)=>{
+  var name = req.body.name;
+  var email = req.body.email;
+  var gender = req.body.gender;
+  var age = req.body.age;
+  var pw = req.body.pw;
+  sql = 'insert into users (username,email,gender,age,password) values(?,?,?,?,?)  ' ; 
+  params = [name,email,gender,age,pw];
   db.query(sql,params ,(err,result)=>{
 
       if(err) throw err;
@@ -335,6 +354,8 @@ app.get('/get_product_by_id/:id/' ,(req,res)=>{
   })
  
 })
+
+
 
 
  
@@ -529,7 +550,7 @@ app.get('/cart_add_product/:uid/:pid/:qty/' ,(req,res)=>{
   
   
   sql= "INSERT INTO cart (productid,userid,quantity)SELECT ?,?,? FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM cart WHERE productid = ? and userid=?);";
-          params=[pid,qty,uid,pid,uid];
+          params=[pid,uid,qty,pid,uid];
  db.query(sql,params,(err,result)=>{
      
   if(err){

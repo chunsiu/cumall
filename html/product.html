@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="../css/product.css">
     <script src="../js/jquery-1.11.1.js"></script>
     <script type="module" src="../js/product.js"></script>
-    <title>Class T-Shirt - Product Page</title>
+    <script type="module" src="../js/menu.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUMall | Shop</title>
 </head>
 <body>
     <section id="header">
@@ -17,11 +19,11 @@
         <div>
             <ul id="navbar">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a class="active" href="product.html">Product</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                <li><a href="login.html"><i class="fa-solid fa-user"></i></a></li>
+                <li><a class="active" href="shop.html">Shop</a></li>
+                 
+                <li><a id="profile" href="profile.html">Profile</a></li>
+                <li><a class="active cart"   href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></a></li>
+                <li><a id='login_btn' href="login.html">Login<i class="fa-solid fa-right-to-bracket fa-lg"></i></a></li>
             </ul>
         </div>
     </section>
@@ -30,7 +32,7 @@
     <section id="product-details">
          
         <div class="product-container">
-            <img class="product-image" src="product_image_url" alt="Product Image">
+            <img class="product-image" src="" alt="Product Image">
             <div class="product-info">
                 <div class="product-name">SUNTORY 2024 New Product - STRONG ZERO</div>
                 <div class="product-price">$259.70</div>

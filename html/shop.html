@@ -8,21 +8,22 @@
     <script type="module" src="../js/shop.js"></script>
     <script src="https://kit.fontawesome.com/c3cb9c913e.js"></script>
     <link rel="stylesheet" href="../style.css">
+    <script type="module" src="../js/menu.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CUMall | Shop</title>
 </head>
 <body>
     <section id="header">
-        <a><img src="/img/icon.PNG" class="icon" alt=""></a>
+        <a><img src="../img/icon.PNG" class="icon" alt=""></a>
         <!--top lefthand side icon-->  
         <div>
             <ul id="navbar">
                 <li><a href="index.html">Home</a></li>
                 <li><a class="active" href="shop.html">Shop</a></li>
-                <li><a href="product.html">Product</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                <li><a href="login.html"><i class="fa-solid fa-user"></i></a></li>
+                 
+                <li><a id="profile" href="profile.html">Profile</a></li>
+                <li><a class="cart"   href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></a></li>
+                <li><a id='login_btn' href="login.html">Login<i class="fa-solid fa-right-to-bracket fa-lg"></i></a></li>
             </ul>
         </div>
     </section>

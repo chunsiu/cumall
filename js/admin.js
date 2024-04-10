@@ -2,7 +2,7 @@ import {product,db_update_product_by_Id,db_delete_product_by_Id,db_insert_produc
 $(document).ready(function () {
 
     var isEditing = false;
-    var productList=db_get_productList();
+    
     //functions 
     //get product info from database
 

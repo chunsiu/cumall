@@ -131,17 +131,34 @@ $(document).ready(function () {
                   //upload database
                    
                         var name=$('input[name="user_name"]').val();
-                        console.log(name);
-                        alert('fuck');
+                         
+                         
                          
                         var email=$('input[name="user_email"]').val();
                         var gender=$('input[name="gender"]').val();
                         var age=$('input[name="user_age"]').val();
-                        
-                  db_insert_user(name,email,gender,age);
-                  alert('user created');
-                  
-                    form.submit();
+                        var password = "";
+
+                        $.ajax({
+                            type: 'get',
+                            headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+                            url:'http://localhost:3100/check_email/'+email+'/',
+                            dataType:'json',
+                            success: function(result){
+                              console.log(result);    
+                              if(result.length==0){
+                                alert('email address is already registerd , please try another one!');
+                              }else{
+                                
+                                db_insert_user(name,email,gender,age,password);
+                                alert('user created');
+                                form.submit();
+                              }
+                              
+                            }		
+                            
+                     }); 
+                   
                 }
               });
                        

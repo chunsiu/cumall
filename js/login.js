@@ -1,8 +1,9 @@
+import { session_login_user} from './class.js';
 $(document).ready(function() {
     $('#loginForm').on('submit', function(e) {
       e.preventDefault();
   
-      var username = $('#username').val();
+      var username = $('#email').val();
       var password = $('#password').val();
   
       $.ajax({
@@ -13,14 +14,25 @@ $(document).ready(function() {
           password: password
         },
         success: function(response) {
+          console.log(response);
           if(response.status === 'success') {
+            
             console.log('Login successful');
             alert('Login successful');
             // Handle successful login here
+            var userid = response.user.userid;
+            var name = response.user.username;
+            alert(userid);
+            session_login_user(userid,name);
+            window.location.href = "index.html";
+           
+
           } else {
-            console.log('Invalid username or password');
+            console.log('Invalid email or password');
             alert('Invalid username or password');
             // Handle login failure here
+
+            
           }
         },
         error: function(error) {
