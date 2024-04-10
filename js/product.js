@@ -1,4 +1,4 @@
-import { product,session_get_login_userId } from './class.js';
+import { product,session_get_login_userId,update_rating,update_cart_icon } from './class.js';
 $(document).ready(function () {
 
     //testing userid
@@ -24,8 +24,16 @@ $(document).ready(function () {
                 url:'http://localhost:3100/get_review/'+pid+'/' ,
                 
                 success: function(result){
+                    var date ;
+                    var localDate;
+                    const hongKongTimeZone = 'Asia/Hong_Kong';
+                    var hongkongDate
+                    
                      for(var i = 0 ; i<result.length;i++){
-                  $('.reviews-container').append(append_review(result[i].content,result[i].username,result[i].rating,result[i].review_date)) ;
+                        date = new Date(result[i].review_date);
+                        
+                        hongkongDate = new Date(date.getTime() + (date.getTimezoneOffset() * 60000) + (8 * 3600000)).toLocaleString('zh-HK', { timeZone: hongKongTimeZone });
+                  $('.reviews-container').append(append_review(result[i].content,result[i].username,result[i].rating,hongkongDate )) ;
                      }
                    
                 }		
@@ -67,7 +75,7 @@ $(document).ready(function () {
             success: function(result){
                  
               console.log(result);  
-              product1=  new product(result[0].productid, result[0].productname, result[0].price, result[0].quantity, result[0].description, result[0].rating);
+              product1=  new product(result[0].productid, result[0].productname, result[0].price, result[0].quantity, result[0].description, result[0].rating,result[0].type);
                 display_product_info(product1);
             }		
             
@@ -84,6 +92,8 @@ $(document).ready(function () {
                  
               console.log(result);  
               alert('product added to cart');
+              update_cart_icon(uid);
+              //location.reload();
             }		
             
      });
@@ -92,7 +102,7 @@ $(document).ready(function () {
      }
 
      $('#cart_btn').click(function(){
-        if(session_get_login_user()){
+        if(session_get_login_userId()){
              
             $.ajax({
                 type: 'get',
@@ -130,8 +140,10 @@ $(document).ready(function () {
         var pid=productId ;
          
         var content =$('#comment').val();
-        var rating = $('#rating').val();
+        var rating = $('#rating1').val();
+        
         console.log(rating);
+         
         var data={
             uid: userid,
             pid : pid,
@@ -152,6 +164,7 @@ $(document).ready(function () {
                  
                  
               }else{
+                update_rating(pid);
                 alert("review submitted");
               }
               location.reload();
@@ -166,11 +179,21 @@ $(document).ready(function () {
      })
       
      function display_product_info(product){
-        $('.product-name').html(product.name);
+        $('.product-name').html('<h1>'+product.name+'</h1>');
         $('.product-price').html('$'+product.price);
         $('.description').html(product.desc);
+        $('.type').html('<h4>'+product.type+'</h4>');
         var qty = product.qty;
-        $('.product-image').attr('src','../img/product/'+product.id+'/cover.png')
+        $('.product-image').attr('src','../img/product/'+product.id+'/cover.png');
+        var html="";
+        for(var i=0;i<5;i++){
+            if(i<product.rating){
+        html+='       <span class="review-rating"><i class="fa fa-star checked"></i></span>';
+            }else{
+                html+='       <span class="review-rating"><i class="fa fa-star "></i></span>';
+            }
+        }
+        $('#rating').html(html);
 
 
      }

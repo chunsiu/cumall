@@ -1,11 +1,12 @@
 export class product{
-    constructor(id,name,price,qty,desc,rating){
+    constructor(id,name,price,qty,desc,rating,type){
         this.id=id;
         this.name=name;
         this.price=price;
         this.qty=qty;
         this.desc=desc;
         this.rating=rating;
+        this.type=type;
          
 
     }
@@ -53,7 +54,8 @@ export function db_remove_product_by_Id(pid,uid){
         url:'http://localhost:3100/cart_remove_product/'+uid+'/'+pid+'/',
         dataType:'json',
         success: function(result){
-          console.log(result);           
+          console.log(result); 
+          update_cart_icon(uid);          
         }		
         
  }); 
@@ -153,12 +155,27 @@ export function db_update_user_by_Id(uid,name,email,gender,age){
  }); 
 }
 
-export function db_update_product_by_Id(id,name,price,qty,desc){
+export function db_delete_cart_by_Id(uid){
+    console.log('here 1');
+   $.ajax({
+       type: 'get',
+       headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+       url:'http://localhost:3100/delete_cart/'+uid+'/',
+       
+       success: function(result){
+           console.log('here 2');
+         console.log(result);           
+       }		
+       
+}); 
+}
+
+export function db_update_product_by_Id(id,name,price,qty,desc,type){
      
    $.ajax({
        type: 'get',
        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
-       url:'http://localhost:3100/update_product_info/'+id+'/'+name+'/'+price+'/'+qty+'/'+desc,
+       url:'http://localhost:3100/update_product_info/'+id+'/'+name+'/'+price+'/'+qty+'/'+desc+'/'+type,
        
        success: function(result){
             
@@ -199,22 +216,84 @@ export function db_delete_product_by_Id(uid){
  }); 
  }
 
-export function db_insert_product(name,price,quantity,desc){
+export function db_insert_product(name,price,quantity,desc,formdata,type){
     console.log('here 1');
    $.ajax({
        type: 'get',
        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
-       url:'http://localhost:3100/insert_new_product/'+name+'/'+price+'/'+quantity+'/'+desc ,
+       url:'http://localhost:3100/insert_new_product/'+name+'/'+price+'/'+quantity+'/'+desc+'/'+type  ,
        
        success: function(result){
             
-         console.log(result);           
+         console.log(result);   
+         var id = result.insertId;
+         
+         $.ajax({
+            type: 'post',
+            headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+            data:formdata,
+            processData: false,
+            contentType: false,
+            url:'http://localhost:3100/upload_cover/'+id ,
+            
+            success: function(result1){
+                 
+              console.log(result1);           
+            }		
+            
+     }); 
        }		
        
 }); 
 }
-// product page  get product
 
+//update rating 
+export function update_rating(id){
+    $.ajax({
+        type: 'get',
+        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+        url:'http://localhost:3100/update_rating_by_id/'+id+'/',
+        
+        success: function(result){
+             
+          console.log(result);           
+        }		
+        
+ }); 
+}
+
+//update cart icon
+export function update_cart_icon(uid){
+    $.ajax({
+        type: 'get',
+        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+        url:'http://localhost:3100/get_cart/'+uid+'/',
+        dataType:'json',
+        success: function(result){
+          console.log(result); 
+          $('.badge').html(result.length);  
+             
+        }	
+        	
+        
+ });
+}
+//admin login session
+export function session_login_admin(id,name){
+    sessionStorage.setItem('login_admin_id', id);
+    sessionStorage.setItem('login_admin_name', name);
+}
+export function session_logout_admin(){
+    sessionStorage.removeItem('login_admin_id');
+    sessionStorage.removeItem('login_admin_name');
+    sessionStorage.clear();
+}
+export function session_get_login_adminId(){
+    return  sessionStorage.getItem('login_admin_id');
+}
+export function session_get_login_adminName(){
+    return  sessionStorage.getItem('login_admin_name');
+}
 
  
 

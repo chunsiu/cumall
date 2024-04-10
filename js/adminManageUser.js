@@ -106,6 +106,7 @@ $(document).ready(function () {
                     required: true,
                     number: true
                   },
+                  user_pw:'required',
                   user_email:'required',
                 //  user_image: 'required',
                   gender: 'required'
@@ -136,8 +137,9 @@ $(document).ready(function () {
                          
                         var email=$('input[name="user_email"]').val();
                         var gender=$('input[name="gender"]').val();
+                        var password=$('input[name="user_pw"]').val();
                         var age=$('input[name="user_age"]').val();
-                        var password = "";
+                         
 
                         $.ajax({
                             type: 'get',
@@ -146,13 +148,13 @@ $(document).ready(function () {
                             dataType:'json',
                             success: function(result){
                               console.log(result);    
-                              if(result.length==0){
+                              if(result.length!=0){
                                 alert('email address is already registerd , please try another one!');
                               }else{
                                 
                                 db_insert_user(name,email,gender,age,password);
                                 alert('user created');
-                                form.submit();
+                                window.location.reload();
                               }
                               
                             }		

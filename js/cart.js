@@ -1,4 +1,4 @@
-import { product, session_get_login_userId, getProductById, db_update_product_qty_by_Id, removeProductById, db_remove_product_by_Id, } from './class.js';
+import { product, session_get_login_userId, getProductById, db_update_product_qty_by_Id, removeProductById, db_remove_product_by_Id,db_delete_cart_by_Id } from './class.js';
 $(document).ready(function () {
     //main
    // var userid = 1; //test 
@@ -8,12 +8,13 @@ $(document).ready(function () {
 
 
     var final_total = 0;
-    cartList = db_get_cart(userid);
+     db_get_cart(userid);
+    
 
     //
 
     function db_get_cart(uid) {
-        var cartList = [];
+        
         $.ajax({
             type: 'get',
             headers: { 'Access-Control-Allow-Origin': 'http://localhost' },
@@ -164,6 +165,7 @@ $(document).ready(function () {
                     update_subtotal(id, product.price, value);
                     //update db cartlist 
                     db_remove_product_by_Id(id, userid);
+                    //location.reload();
 
 
                 });
@@ -197,7 +199,7 @@ $(document).ready(function () {
 
 
                 })
-
+                console.log(cartList);
                 return cartList;
             }
 
@@ -256,14 +258,17 @@ $(document).ready(function () {
             success: function (result) {
                 console.log(result);
                 orderid = result.orderid;
+                 
+                console.log(cartList);
                 for (var i = 0; i < cartList.length; i++) {
                     minus_product(cartList[i].id, cartList[i].qty);
-                    insert_op(orderid, cartList[i].id, cartList[i].qty);
+                   insert_op(orderid, cartList[i].id, cartList[i].qty);
+                    db_delete_cart_by_Id(userid);
 
                 }
 
                 alert('puchase success');
-                window.sessionStorage.removeItem('CartList');
+                
                 window.location.href = 'http://localhost/3100project/html/index.html';
 
 

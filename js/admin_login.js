@@ -1,4 +1,4 @@
-import { session_login_user} from './class.js';
+import {  session_login_admin} from './class.js';
 $(document).ready(function() {
     $('#loginForm').on('submit', function(e) {
       e.preventDefault();
@@ -7,7 +7,7 @@ $(document).ready(function() {
       var password = $('#password').val();
   
       $.ajax({
-        url: 'http://localhost:3100/login',
+        url: 'http://localhost:3100/admin_login',
         type: 'POST',
         data: {
           username: username,
@@ -20,11 +20,11 @@ $(document).ready(function() {
             console.log('Login successful');
             alert('Login successful');
             // Handle successful login here
-            var userid = response.user.userid;
-            var name = response.user.username;
+            var userid = response.user.adminid;
+            var name = response.user.adminname;
             
-            session_login_user(userid,name);
-            window.location.href = "index.html";
+            session_login_admin(userid,name);
+            window.location.href = "admin.html";
            
 
           } else {

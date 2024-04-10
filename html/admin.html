@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
     <script type="module" src="../js/admin.js"></script>
+    <script type="module" src="../js/admin_menu.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CUMall | Admin</title>
@@ -17,16 +18,16 @@
 
 </head>
 
-<section id="header">
-    <a><img src="../img/icon.PNG" class="icon" alt=""></a>
+<section class="adminheader">
+    <a><img src="../img/icon2.PNG" class="icon" alt=""></a>
+    <!--top lefthand side icon-->  
     <div>
         <ul id="navbar">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span class="badge">3</span></a></li>
-            <li><a href="login.html"><i class="fa-solid fa-user"></i></a></li>
+            <li><a class="active" href="admin.html">Product</a></li>
+            <li><a   href="adminManageUser.html">User</a></li>
+             
+            
+            <li><a id='login_btn' href="login.html">Login<i class="fa-solid fa-right-to-bracket fa-lg"></i></a></li>
         </ul>
     </div>
 </section>
@@ -48,11 +49,18 @@
             <input type="text" placeholder="product name" name="product_name" class="box">
             <input type="number" placeholder="price" name="price" class="box">
             <input type="number" placeholder="quantity" name="quantity" class="box">
+            <select id='type1' name="device_type" style="padding:3%;">
+                <option value="" disabled selected>Select a type</option>
+                <option value="laptop">laptop</option>
+                <option value="smartphone">smartphone</option>
+                <option value="fruit">fruit</option>
+                <option value="tablet">tablet</option>
+              </select>
              
-            <textarea placeholder="description" name="description" rows="5" cols="30">
-           </textarea>
+            <textarea placeholder="describe the product ...." name="description" rows="5" cols="30"></textarea>
+           
             
-            <input type="file" accept="image/png, image/jpeg, image/jpg" name="user_image" class="box">
+            <input type="file" id="cover" accept="image/png, image/jpeg, image/jpg" name="user_image" class="box">
             <div id="form_error"></div>
             <input type="submit" class="btn" name="add" value="Add product">
         </form>
@@ -66,6 +74,7 @@
                 <td>product id</td>     
                 <td>name</td>
                 <td>price</td>
+                <td>type</td>
                 <td>description</td>       
                 <td>quantity</td>
                 <td>action</td>

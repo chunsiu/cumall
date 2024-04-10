@@ -7,6 +7,7 @@ $(document).ready(function(){
 //
 
 var userid = session_get_login_userId(); 
+console.log(userid);
 
 function load_profile(){
     $.ajax({
@@ -55,9 +56,9 @@ function save_profile(name,age,gender){
 }
 
 function change_password(){
-    var old_pw = $("#currentPassword").val();
-    var new_pw = $("#newPassword").val();
-    var new_pw2 = $("#newPassword2").val();
+    var old_pw = $("#current-password").val();
+    var new_pw = $("#new-password").val();
+    var new_pw2 = $("#new-password2").val();
     if(new_pw!=new_pw2){
         alert("ensure new password incorrect");
         location.reload();

@@ -162,3 +162,8 @@ body {
 .checked{
     color: orange;
 }
+
+#rating{
+
+    padding-bottom:3%;
+}

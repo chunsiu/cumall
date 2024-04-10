@@ -1,4 +1,3 @@
-
 import {db_insert_user} from './class.js';
 $(document).ready(function () {
 console.log('hi');
@@ -52,7 +51,7 @@ $('#registerForm').validate({
                 dataType:'json',
                 success: function(result){
                   console.log(result);    
-                  if(result.length==0){
+                  if(result.length!=0){
                     alert('email address is already registerd , please try another one!');
                   }else{
                     

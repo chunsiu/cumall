@@ -20,6 +20,13 @@ $(document).ready(function () {
 
 
     //
+    db_get_productList();
+
+    $('.toggle-btn').click(function () {
+        $('#add_product_form').toggle();
+        $('.toggle-icon').html() == '+' ? $('.toggle-icon').html('-') : $('.toggle-icon').html('+')
+    });
+
 
 
 
@@ -35,7 +42,7 @@ $(document).ready(function () {
             success: function(result){
               console.log(result); 
               for(var i=0;i<result.length;i++){
-                productList.push(new product(result[i].productid,result[i].productname,result[i].price,result[i].quantity,result[i].description,result[i].rating,result[i].cover));
+                productList.push(new product(result[i].productid,result[i].productname,result[i].price,result[i].quantity,result[i].description,result[i].rating,result[i].type));
     //id,name,price,qty,desc,rating,cover
               }  
               console.log(productList);
@@ -43,11 +50,7 @@ $(document).ready(function () {
 
 
               //ui Listener
-              $('.toggle-btn').click(function () {
-                $('#add_product_form').toggle();
-                $('.toggle-icon').html() == '+' ? $('.toggle-icon').html('-') : $('.toggle-icon').html('+')
-            });
-        
+             
         
             $(".edit-btn").on("click", function () {
                 
@@ -70,6 +73,7 @@ $(document).ready(function () {
                         var id=$(this).parent().siblings('.id').html();
                         var name=$(this).parent().siblings('.name').html();
                         var price=$(this).parent().siblings('.price').html();
+                        var type=$(this).parent().siblings('.type').html();
                         var quantity=$(this).parent().siblings('.qty').html();
                         var desc=$(this).parent().siblings('.desc').html();
 
@@ -78,8 +82,8 @@ $(document).ready(function () {
                         console.log('emaik : ' +price);
                         console.log('gender : ' +quantity);
                         console.log('age : ' +desc);
-                        db_update_product_by_Id(id,name,price,quantity,desc);
-                        console.log('hi');
+                        db_update_product_by_Id(id,name,price,quantity,desc,type);
+                         
         
                         //
                         row.attr('contenteditable', 'false');
@@ -100,6 +104,7 @@ $(document).ready(function () {
                         row.remove();
              } });
              $('#add_product_form').validate({
+                
                 rules: {
                   product_name: 'required',
                   price: {
@@ -129,19 +134,26 @@ $(document).ready(function () {
                   },
                 submitHandler: function(form) {
                   //upload database
-                   
-                        var name=$('input[name="product_name"]').val();
+                  
+                  var fd = new FormData();
+                  
+                       var files = $('#cover')[0].files;
+                        fd.append('file',files[0]);
+                       
+                         var name=$('input[name="product_name"]').val();
                         console.log(name);
-                        alert('fuck');
                          
+                        var type=$('#type1').val();
+                        
                         var price=$('input[name="price"]').val();
                         var desc=$('textarea[name="description"]').val();
                         var qty=$('input[name="quantity"]').val();
                         
-                  db_insert_product(name,price,qty,desc);
-                  alert('product created');
+                  db_insert_product(name,price,qty,desc,fd,type);
+                 alert('product created'); 
                   
                     form.submit();
+                  
                 }
               });
                        
@@ -163,7 +175,8 @@ $(document).ready(function () {
         html+='<tr>';
         html+='        <td class="id" contenteditable="false">'+productList[i].id +'</td> ';  
         html+='        <td class="name" contenteditable="false">'+productList[i].name +'</td>';
-        html+='        <td class="price" contenteditable="false">'+productList[i].price +'</td> ';     
+        html+='        <td class="price" contenteditable="false">'+productList[i].price +'</td> ';  
+        html+='        <td class="type" contenteditable="false">'+productList[i].type +'</td> ';   
         html+='        <td class="desc" contenteditable="false">'+productList[i].desc +'</td>';
         html+='        <td class="qty" contenteditable="false">'+productList[i].qty +'</td>';
         html+='        <td>';

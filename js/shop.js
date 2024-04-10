@@ -10,12 +10,14 @@ $(document).ready(function () {
     var price = product.price;
     var rating = product.rating;
     var id = product.id;
+    var type = product.type;
      
      
     var html = '';
     html += '<div class="content">';
     html += '<img src="../img/product/'+id+'/cover.png">';
     html += '<h3>' + name + '</h3>';
+    html += '<h4>' + type + '</h4>';
     html += '<p>' + description + '</p>';
     html += '<h6>$' + price + '</h6>';
     html += '<ul>';
@@ -46,7 +48,7 @@ $(document).ready(function () {
       success: function (result) {
         console.log(result);
         for (var i = 0; i < result.length; i++) {
-          productList.push(new product(result[i].productid, result[i].productname, result[i].price, result[i].quantity, result[i].description, result[i].rating));
+          productList.push(new product(result[i].productid, result[i].productname, result[i].price, result[i].quantity, result[i].description, result[i].rating,result[i].type));
 
         }
         displayList = productList;
@@ -77,6 +79,19 @@ $(document).ready(function () {
   function filtered_by_keyword(productList, keyword) {
 
     return productList.filter(product => product.name.includes(keyword));
+  }
+
+  function filtered_by_range(productList, upper,lower) {
+
+    return productList.filter(product => product.price>=lower&&product.price<=upper);
+  }
+  function filtered_by_type(productList, type) {
+    
+    if(type!='all'){
+      return productList.filter(product => product.type==type);
+    }else{
+      return productList;
+    }
   }
 
   function sort_by_name(productList) {
@@ -121,6 +136,38 @@ $(document).ready(function () {
 
   function update_display_product() {
     $('#productList').children().remove();
+
+    var keyword = $('#search').val();
+    displayList = filtered_by_keyword(productList,keyword);
+    console.log(displayList);
+
+
+    var sortBy = $('#sort-by').val();
+    switch(sortBy){
+      case 'name': displayList = sort_by_name(displayList);break;
+      case 'rating': displayList = sort_by_rating(displayList);break;
+      case 'asc_price': displayList = sort_by_price_asc(displayList);break;
+      case 'desc_price': displayList = sort_by_price_desc(displayList);break;
+  
+       
+      default:
+      }
+      console.log(displayList)
+      var type = $('#type_sort').val();
+      console.log(type);
+      displayList=filtered_by_type(displayList,type);
+
+      var up = $('#up').val();
+      var low = $('#low').val();
+      var checked = document.getElementById('range_cb').checked
+      if(checked){
+      displayList =filtered_by_range(displayList, up,low) ;
+      }
+
+      
+
+
+      console.log(displayList);
     console.log('update');
     for (var i = 0; i < displayList.length; i++) {
       console.log(displayList[i]);
@@ -145,11 +192,13 @@ $(document).ready(function () {
 
     var keyword =  $(this).val();
      
-    displayList = filtered_by_keyword(productList,keyword);
+   // displayList = filtered_by_keyword(productList,keyword);
     update_display_product();
 
 
   })
+
+  
 
   $('#test').click(function () {
 
@@ -160,7 +209,7 @@ $(document).ready(function () {
 
   $('#sort-by').change(function () {
 
-    var sortBy =  $(this).val();
+   /*  var sortBy =  $(this).val();
     console.log('hi');
 
     switch(sortBy){
@@ -171,7 +220,42 @@ $(document).ready(function () {
 
      
     default:
-    }
+    } */
+    update_display_product();
+
+
+  })
+  $('#range_cb').change(function () {
+
+    /*  var sortBy =  $(this).val();
+     console.log('hi');
+ 
+     switch(sortBy){
+     case 'name': displayList = sort_by_name(displayList);break;
+     case 'rating': displayList = sort_by_rating(displayList);break;
+     case 'asc_price': displayList = sort_by_price_asc(displayList);break;
+     case 'desc_price': displayList = sort_by_price_desc(displayList);break;
+ 
+      
+     default:
+     } */
+     var checked = document.getElementById('range_cb').checked;
+ 
+     update_display_product();
+   })
+   $('#up').on('input',function () {
+    update_display_product();
+   });
+
+   $('#low').on('input',function () {
+    update_display_product();
+   });
+  $('#type_sort').change(function () {
+
+   // var type =  $(this).val();
+  //  console.log('hi');
+   
+   // displayList=filtered_by_type(displayList,type);
     update_display_product();
 
 

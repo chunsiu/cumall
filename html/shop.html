@@ -12,6 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CUMall | Shop</title>
 </head>
+<style>
+.price_range{
+    width:10px
+}
+</style>
 <body>
     <section id="header">
         <a><img src="../img/icon.PNG" class="icon" alt=""></a>
@@ -54,6 +59,42 @@
                         </select>
                     </div>
                 </div>
+            </section>
+
+            <section id="sorting-bar">
+                <div class="container">
+                    <div class="sorting-container">
+                        <label for="sort-by">Type:</label>
+                        <select id="type_sort">
+                            <option value="all" default>all</option>
+                            <option value="smartphone">smartphone</option>
+                            <option value="labtop">labtop</option>
+                            <option value="tablet">tablet</option>
+                            <option value="fruit">fruit</option>
+                             
+                        </select>
+                    </div>
+                </div>
+          
+            </section>
+            <section id = 'sorting-bar'>
+                <div class="price-range-container">
+                    <label>
+                      <input type="checkbox" id="range_cb"> Price Range
+                    </label>
+                    
+                    <div class="price-range-inputs">
+                      <div>
+                        <label for="price-range-lower">Lower Limit:</label>
+                        <input class="price_range" type="number" id="low" style="width:50%;" min="0" value="0" >
+                      </div>
+                      
+                      <div>
+                        <label for="price-range-upper">Upper Limit:</label>
+                        <input class="price_range" type="number" id="up" style="width:50%;" min="0" value="1000" >
+                      </div>
+                    </div>
+                  </div>
             </section>
         </div>
          

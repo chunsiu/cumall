@@ -30,7 +30,7 @@ $(document).ready(function () {
         
  });
 
-    $('.badge').html(1);
+  //  $('.badge').html(1);
 
 }else{
     $('.cart').parent().remove();
