@@ -2,7 +2,7 @@ import {session_get_login_adminId,session_logout_admin,db_get_cart,product,sessi
 $(document).ready(function () {
     if(session_get_login_adminId()){
         var uid = session_get_login_adminId();
-        console.log(uid);
+        
         var name= session_get_login_adminName();
     $('#login_btn').html('Logout<i class="fa-solid fa-right-from-bracket fa-lg"> ');
     //$('#navbar').prepend('<li>Welcome, '+name+'</li>')  
