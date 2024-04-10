@@ -190,21 +190,7 @@ export function db_insert_product(name,price,quantity,desc){
 }); 
 }
 // product page  get product
-export function db_get_product_by_Id(id){
-    
-    $.ajax({
-        type: 'get',
-        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
-        url:'http://localhost:3100/get_product_by_Id/'+id+'/' ,
-        
-        success: function(result){
-             
-          console.log(result);  
-          return new product(result[i].productid, result[i].productname, result[i].price, result[i].quantity, result[i].description, result[i].rating);         
-        }		
-        
- }); 
- }
+
 
  
 

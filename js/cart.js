@@ -57,14 +57,33 @@ $(document).ready(function () {
 
 
                     var qty = Number($(this).siblings('.qtyInput').val());
-                    //update ui qty
-                    $(this).siblings('.qtyInput').val(qty + 1);
-                    //update ui price
-                    update_subtotal(id, product.price, qty + 1);
-                    //update session
+                     
+                    //update db
+                    $.ajax({
+                        type: 'get',
+                        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+                        url:'http://localhost:3100/get_product_by_Id/'+id+'/' ,
+                        
+                        success: function(result){
+                             
+                          console.log(result);  
+                          var db_qty=result[0].quantity;
+                          if(db_qty>=qty+1){
+                            db_update_product_qty_by_Id(id, userid, qty + 1);
 
+                            //update ui qty
+                            $(this).siblings('.qtyInput').val(qty + 1);
+                            //update ui price
+                            update_subtotal(id, product.price, qty + 1);
+                          }else{
+                            alert('sorry, not enough stock');
+                          }
 
-                    db_update_product_qty_by_Id(id, userid, qty + 1);
+                        }		
+                        
+                 }); 
+
+                  
                 });
 
                 //  
@@ -73,17 +92,44 @@ $(document).ready(function () {
 
                 $('.qtyInput').change(function () {
                     var id = $(this).parent().parent().parent().attr('productid');
+                    var input_box = $(this);
                     var product = getProductById(cartList, id);
                     var value = $(this).val();
                     if (value < 1) {
-                        $(this).val(1);
+                        $(this).val("1");
                         value = 1;
                         alert('the quantity cannot be less than 1, you can remove the item if needed');
+                        return;
                     }
-                    //update price
-                    update_subtotal(id, product.price, value);
-                    //update session
-                    db_update_product_qty_by_Id(id, userid, value);
+
+                    $.ajax({
+                        type: 'get',
+                        headers: {  'Access-Control-Allow-Origin': 'http://localhost' },
+                        url:'http://localhost:3100/get_product_by_Id/'+id+'/' ,
+                        
+                        success: function(result){
+                             
+                          console.log(result);  
+                         var db_qty=result[0].quantity;
+                          if(db_qty>=value){
+                             
+
+                            //update db
+                            db_update_product_qty_by_Id(id, userid, value);
+
+                            //update price
+                            update_subtotal(id, product.price, value);
+                          }else{
+                             
+                            input_box.val(db_qty.toString());
+                            alert('sorry, not enough stock');
+                          }
+
+                        }		
+                        
+                 }); 
+                     
+                     
 
                 });
 

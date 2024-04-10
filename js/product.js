@@ -6,6 +6,7 @@ $(document).ready(function () {
     var userid = 1;
     var urlParams = new URLSearchParams(window.location.search);
     var productId = urlParams.get('pid');
+     
     console.log(productId);
     var product1;
     db_get_product_by_Id(productId);
@@ -148,7 +149,8 @@ $(document).ready(function () {
 
      }
      function check_stock(){
-        return true;
+        
+        return product1.qty>0;
 
      }
 
