@@ -11,18 +11,18 @@
 </head>
 <body>
     <section id="header">
-        <a><img src="../img/icon.PNG" class="icon" alt=""></a>
-        <div>
-            <ul id="navbar">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="product.html">Product</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                <li><a class="active" href="login.html"><i class="fa-solid fa-user"></i></a></li>
-
-            </ul>
-        </div>
+      <a><img src="../img/icon.PNG" class="icon" alt=""></a>
+      <!--top lefthand side icon-->  
+      <div>
+          <ul id="navbar">
+              <li><a class="active" href="index.html">Home</a></li>
+              <li><a   href="shop.html">Shop</a></li>
+               
+              <li><a id="profile" href="profile.html">Profile</a></li>
+              <li><a class="cart"   href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></a></li>
+              <li><a id='login_btn' href="login.html">Login<i class="fa-solid fa-right-to-bracket fa-lg"></i></a></li>
+          </ul>
+      </div>
     </section>
 
     <div class="container">
@@ -68,5 +68,6 @@
         </div>
       </footer>
       <script type="module" src="../js/login.js"></script>
+      <script type="module" src="../js/menu.js"></script>
 </body>
 </html>
